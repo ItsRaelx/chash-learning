@@ -63,16 +63,19 @@
 
 // Przebieg funkcij C
 
-double x=2;
-double y=0;
+// double x=2;
+// double y=0;
 
-if (x <= -4 || x >= 2)
-{
-    y = (-((double)1 / 3) * x) + ((double)2 / 3);
-}
-else
-{
-    y = ((double)1 / 3) * (x + 3) * (x - 2);
-}
+// if (x <= -4 || x >= 2)
+// {
+//     y = (-((double)1 / 3) * x) + ((double)2 / 3);
+// }
+// else
+// {
+//     y = ((double)1 / 3) * (x + 3) * (x - 2);
+// }
 
-Console.WriteLine("X:" + x + " -> Y: " + y);
+// Console.WriteLine("X:" + x + " -> Y: " + y);
+
+// Przebieg funkcji D
+
