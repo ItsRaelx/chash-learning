@@ -79,3 +79,83 @@
 
 // Przebieg funkcji D
 
+// int number = 2;
+// bool isPrime;
+// while(number <= 100)
+// {
+//     isPrime = true;
+//     for(int i = 2; i < number; i++ )
+//     {
+//         if(number % i == 0)
+//         {
+//             isPrime = false;
+//         }
+//     }
+//     if(isPrime){
+//         Console.Write(number + " ");
+//     }
+
+//     number++;
+// }
+
+
+// double[] nbrs = { 12, 45, 56.5, 8, 94 };
+
+// foreach(double x in nbrs)
+//   Console.Write(x + " ");
+
+// Console.Write("Length: ");
+// int n = int.Parse(Console.ReadLine());
+
+// double[] array = new double[n];
+
+// for(int i = 0; i < n; i++)
+// {
+//   Console.Write("Element[" + i + "]: ");
+//   array[i] = double.Parse(Console.ReadLine());
+// }
+
+// Console.Write("Operation: ");
+// char o = char.Parse(Console.ReadLine());
+
+// foreach(double x in n)
+//   Console.Write(x + " ");
+
+// switch(option)
+// {
+//   case "+": x = x + y; break;
+//   case "-": x = x - y; break;
+//   case "*": x = x * y; break;
+//   case "/": x = x / y; break;
+//   default:
+//     Console.WriteLine("Nieobsługiwana operacja!");
+//     return;
+// }
+
+// DOKOŃCZYĆ
+
+// Zadanie 5
+// Musimy podać pierwszą liczbę pierwszą
+
+double[] nbrs = { 2 };
+int n = 2;
+bool isPrime;
+
+while(n <= 500)
+{
+    isPrime = true;
+    for(int i = 0; i < nbrs.Length; i++ )
+    {
+        double temp = nbrs[i];
+        if( n % temp == 0 )
+        {
+            isPrime = false;
+        }
+    }
+    if(isPrime){
+        Console.Write(n + " ");
+        nbrs = nbrs.Append(n).ToArray();
+    }
+
+    n++;
+}
