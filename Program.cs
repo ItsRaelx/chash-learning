@@ -1,70 +1,54 @@
-﻿// double[] nbrs = { 2 };
-// int n = (int)nbrs[0];
-// bool isPrime;
+﻿using System;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
-// while(n <= 10000)
-// {
-//     isPrime = true;
-//     for(int i = 0; i < nbrs.Length; i++ )
-//     {
-//         double temp = nbrs[i];
-//         if( n % temp == 0 )
-//         {
-//             isPrime = false;
-//         }
-//     }
-//     if(isPrime){
-//         Console.Write(n + " ");
-//         nbrs = nbrs.Append(n).ToArray();
-//     }
-
-//     n++;
-// }
-
-Console.WriteLine("Podaj wielkość tablicy:");
-int n = int.Parse(Console.ReadLine());
-double[] nbrs = new double[n];
-
-for(int i = 0; i < nbrs.Length; i++)
+namespace App
 {
-    Random rnd = new Random();
-    nbrs[i] = rnd.Next(0, 99);
-}
-
-for(int i = 0; i < nbrs.Length - 1; i++)
-{
-    for(int j = 0; j < nbrs.Length - 1; j++)
+  class Program
+  {
+    static void Main(string[] args)
     {
-        double now = nbrs[i];
-        double jNext = nbrs[j + 1];
-        if(now > jNext)
+      string[] x = new string[args.Length - 2];
+      string inputDate = args[0] + " " + args[1];
+
+      DateTime dt = DateTime.ParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+
+      for(int i = 0; i < args.Length - 2; i++)
+      {
+        x[i] = args[i + 2];
+      }
+
+      foreach(string str in x)
+      {
+        // Delete numbers from string
+        string type = Regex.Replace(str, @"[0-9\+\-]", "");
+
+        // Get only numbers from string
+        int num = int.Parse(Regex.Replace(str, "[^0-9+-]", ""));
+        
+        switch(type)
         {
-            nbrs[j] = jNext;
-            nbrs[j + 1] = now;
+          case "mo":
+            dt = dt.AddMonths(num);
+            break;
+          case "m":
+            dt = dt.AddMinutes(num);
+            break;
+          case "s":
+            dt = dt.AddSeconds(num);
+            break;
+          case "h":
+            dt = dt.AddHours(num);
+            break;
+          case "d":
+            dt = dt.AddDays(num);
+            break;
+          case "y":
+            dt = dt.AddYears(num);
+            break;
         }
+      }
+      Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
     }
+  }
 }
-
-foreach(double x in nbrs)
-  Console.Write(x + " ");
-
-
-// using System;
-
-// namespace App
-// {
-//   class Program
-//   {
-//     static void Main(string[] args)
-//     {
-//             double y = double.Parse(args[0]);
-//             string mode = args[1];
-//             double[] array = new double[args.Length - 2];
-//             for(int i = 0; i < args.Length - 2; i++)
-//             {
-//                 array[i] = double.Parse(args[i + 2]);
-//             }
-
-//     }
-//   }
-// }

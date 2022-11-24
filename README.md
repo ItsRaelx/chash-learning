@@ -3,7 +3,8 @@ Proste przykłady kodu c#
 
 Proste (zoptymalizowane) szukanie liczb pierwszych na podstawie sprawdzania dzielenia kolejnych liczb przez poprzednią liczbę pierwszą.
 
-```double[] nbrs = { 2 };
+```
+double[] nbrs = { 2 };
 int n = 2;
 bool isPrime;
 
@@ -24,4 +25,15 @@ while(n <= 500)
     }
 
     n++;
-}```
+}
+```
+
+Regex is the best thing! I can easily separate text from numbers.
+
+```
+        // Delete numbers from string
+        string type = Regex.Replace(str, @"[0-9\+\-]", "");
+
+        // Get only numbers from string
+        int num = int.Parse(Regex.Replace(str, "[^0-9+-]", ""));
+```
