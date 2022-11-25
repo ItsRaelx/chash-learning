@@ -50,5 +50,3 @@ for(int i = 1; i < lines.Length; i++)
 // output = output.Replace(";", ",");
 
 File.WriteAllText("./output.csv", output);
-
-// 790 548 169
