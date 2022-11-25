@@ -31,10 +31,32 @@ while(n <= 500)
 Regex is the best thing! I can easily separate text from numbers.
 
 ```
-        // Delete numbers from string
-        string type = Regex.Replace(str, @"[0-9\+\-]", "");
+// Delete numbers from string
+string type = Regex.Replace(str, @"[0-9\+\-]", "");
 
-        // Get only numbers from string
-        int num = int.Parse(Regex.Replace(str, "[^0-9+-]", ""));
+// Get only numbers from string
+int num = int.Parse(Regex.Replace(str, "[^0-9+-]", ""));
 ```
 
+Operacje na plikach:
+```
+string text = File.ReadAllText("./data.csv"); // Load
+Console.WriteLine(text); // Display
+File.WriteAllText("./output.csv", text); // Save
+```
+
+Rozdzielenie stringu na 2 tabele:
+```
+string[] lines = File.ReadAllLines("./data.csv");
+
+double[] I = new double[lines.Length];
+double[] V = new double[lines.Length];
+
+// Do a loop and parse data.csv into I and V
+for (int i = 1; i < lines.Length; i++)
+{
+  temp = lines[i].Split(',');
+  I[i] = double.Parse(temp[0]);
+  V[i] = double.Parse(temp[1]);
+}
+```
