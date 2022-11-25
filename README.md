@@ -37,3 +37,4 @@ Regex is the best thing! I can easily separate text from numbers.
         // Get only numbers from string
         int num = int.Parse(Regex.Replace(str, "[^0-9+-]", ""));
 ```
+
