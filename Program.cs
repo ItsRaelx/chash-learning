@@ -1,54 +1,54 @@
 ﻿using System;
-using System.Globalization;
-using System.Text.RegularExpressions;
+using System.IO;
 
-namespace App
+// string text = File.ReadAllText("./data.csv");
+// Console.WriteLine(text);
+// File.WriteAllText("./output.csv", text);
+
+// string[] lines = File.ReadAllLines("./data.csv");
+// foreach (string line in lines) 
+// {
+//   Console.WriteLine(line);
+//   Console.WriteLine("----");
+// }
+// File.WriteAllLines("./output.csv", lines);
+
+string[] lines = File.ReadAllLines("./data.csv");
+
+double[] I = new double[lines.Length];
+double[] V = new double[lines.Length];
+double[] T = new double[lines.Length];
+double[] P = new double[lines.Length];
+string[] temp = new string[2];
+
+// Do a loop and parse data.csv into I and V
+for (int i = 1; i < lines.Length; i++)
 {
-  class Program
-  {
-    static void Main(string[] args)
-    {
-      string[] x = new string[args.Length - 2];
-      string inputDate = args[0] + " " + args[1];
-
-      DateTime dt = DateTime.ParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
-
-      for(int i = 0; i < args.Length - 2; i++)
-      {
-        x[i] = args[i + 2];
-      }
-
-      foreach(string str in x)
-      {
-        // Delete numbers from string
-        string type = Regex.Replace(str, @"[0-9\+\-]", "");
-
-        // Get only numbers from string
-        int num = int.Parse(Regex.Replace(str, "[^0-9+-]", ""));
-        
-        switch(type)
-        {
-          case "mo":
-            dt = dt.AddMonths(num);
-            break;
-          case "m":
-            dt = dt.AddMinutes(num);
-            break;
-          case "s":
-            dt = dt.AddSeconds(num);
-            break;
-          case "h":
-            dt = dt.AddHours(num);
-            break;
-          case "d":
-            dt = dt.AddDays(num);
-            break;
-          case "y":
-            dt = dt.AddYears(num);
-            break;
-        }
-      }
-      Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
-    }
-  }
+  temp = lines[i].Split(',');
+  I[i] = double.Parse(temp[0]);
+  V[i] = double.Parse(temp[1]);
 }
+
+// Genetate T (time) each is 2 ms apart
+for (int i = 0; i < lines.Length; i++)
+{
+  T[i] = Math.Round(i * 0.002, 3);
+}
+
+// Calculate P and round to 3 decimal places
+for(int i = 0; i < lines.Length; i++)
+{
+  P[i] = Math.Round(I[i] * V[i], 3);
+}
+
+string output = "Time (s);Current (10A);Voltage (V);Power (10W)\r\n";
+
+for(int i = 1; i < lines.Length; i++)
+  output += T[i-1] + ";" + I[i] + ";" + V[i] + ";" +  P[i] + "\r\n";
+
+// output = output.Replace(",", ".");
+// output = output.Replace(";", ",");
+
+File.WriteAllText("./output.csv", output);
+
+// 790 548 169
