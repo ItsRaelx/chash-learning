@@ -11,4 +11,4 @@ Match matchNumber = number.Match(text);
 Console.WriteLine($"value:{matchNumber.Value} position:{matchNumber.Index}");
 
 Match matchLetter = letter.Match(text);
-Console.WriteLine($"value:{matchLetter.Value} position:{matchLetter.Index}"); 
+Console.WriteLine($"value:{matchLetter.Value} position:{matchLetter.Index}");
