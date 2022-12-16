@@ -1,59 +1,47 @@
-﻿// using System;
-// using System.Globalization;
-using System.Text.RegularExpressions;
+﻿
+namespace project
+{
+  public class Hero
+  {
+    public string Name;
+    private int Strength;
+    private int Dexterity;
+    private int Intelligence;
 
-// namespace App
-// {
-//   class Program
-//   {
-//     static void Main(string[] args)
-//     {
-//       string[] x = new string[args.Length - 2];
-//       string inputDate = args[0] + " " + args[1];
+    private void Init(int strength = 5, int dexterity = 5, int intelligence = 5)
+    {
+      this.Strength = strength;
+      this.Dexterity = dexterity;
+      this.Intelligence = intelligence;
+    }
 
-//       DateTime dt = DateTime.ParseExact(inputDate, "yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture);
+    public int GetStrength() { return this.Strength; }
+    public int GetDexterity() { return this.Dexterity; }
+    public int GetIntelligence() { return this.Intelligence; }
 
-//       for(int i = 0; i < args.Length - 2; i++)
-//       {
-//         x[i] = args[i + 2];
-//       }
+    public Hero(string name, string myclass)
+    {
+      this.Name = name;
+      switch(myclass)
+      {
+        case "warior": Init(8, 5, 2); break;
+        case "assassin": Init(3, 8, 4); break;
+        case "sorcerer": Init(4, 2, 9); break;
+        default: Init(); break;
+      }
+    }
+  }
 
-//       foreach(string str in x)
-//       {
-//         // Delete numbers from string
-//         string type = Regex.Replace(str, "[+-][0-9]*", "");
-
-//         // Get only numbers from string
-//         int num = int.Parse(Regex.Replace(str, "[^0-9+-]", ""));
-
-//         switch(type)
-//         {
-//           case "mo":
-//             dt = dt.AddMonths(num);
-//             break;
-//           case "m":
-//             dt = dt.AddMinutes(num);
-//             break;
-//           case "s":
-//             dt = dt.AddSeconds(num);
-//             break;
-//           case "h":
-//             dt = dt.AddHours(num);
-//             break;
-//           case "d":
-//             dt = dt.AddDays(num);
-//             break;
-//           case "y":
-//             dt = dt.AddYears(num);
-//             break;
-//         }
-//       }
-//       Console.WriteLine(dt.ToString("yyyy-MM-dd HH:mm:ss"));
-//     }
-//   }
-// }
-
-string text = "https://alias.nazwa.com/js&adj/das$%sadds/sdasd@121/#asdasdasd1232@";
-
-string done = Regex.Match(text, @"https://[a-z]*\.nazwa\.((com)|(pl))[^#]*", RegexOptions.IgnoreCase).Value;
-Console.WriteLine(done);
+  class Program
+  {
+    static void Main(string[] args)
+    {
+      Hero hero = new Hero("Edward Białykij", "sorcerer");
+      Console.WriteLine(hero.Name + " Str:{0} Dex:{1} Int:{2}",
+                        hero.GetStrength(),
+                        hero.GetDexterity(),
+                        hero.GetIntelligence()
+                        );
+    }
+  }
+}
